@@ -1,0 +1,243 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Arial,
+    sans-serif;
+}
+
+.login-page {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  background:
+    radial-gradient(
+      circle at top left,
+      #dbeafe 0%,
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at bottom right,
+      #e0e7ff 0%,
+      transparent 35%
+    ),
+    #f8fafc;
+}
+
+.login-card {
+  width: 100%;
+  max-width: 440px;
+  background: #ffffff;
+  padding: 45px 42px;
+  border: 1px solid #e5e7eb;
+  border-radius: 18px;
+  box-shadow:
+    0 20px 50px rgba(15, 23, 42, 0.08),
+    0 4px 12px rgba(15, 23, 42, 0.04);
+  animation: cardAppear 0.45s ease;
+}
+
+@keyframes cardAppear {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.login-card h1 {
+  text-align: center;
+  color: #111827;
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  margin-bottom: 8px;
+}
+
+.subtitle {
+  text-align: center;
+  color: #6b7280;
+  font-size: 15px;
+  margin-bottom: 35px;
+}
+
+.form-group {
+  margin-bottom: 22px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: #374151;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.form-group input {
+  width: 100%;
+  height: 48px;
+  padding: 0 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 9px;
+  background: #ffffff;
+  color: #111827;
+  font-size: 15px;
+  outline: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+}
+
+.form-group input::placeholder {
+  color: #9ca3af;
+}
+
+.form-group input:hover {
+  border-color: #9ca3af;
+}
+
+.form-group input:focus {
+  border-color: #2563eb;
+  background: #ffffff;
+  box-shadow:
+    0 0 0 3px rgba(37, 99, 235, 0.12);
+}
+
+.login-card form > button {
+  width: 100%;
+  height: 48px;
+  margin-top: 5px;
+  border: none;
+  border-radius: 9px;
+  background: #2563eb;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    transform 0.1s ease,
+    box-shadow 0.2s ease;
+}
+
+.login-card form > button:hover {
+  background: #1d4ed8;
+  box-shadow:
+    0 6px 15px rgba(37, 99, 235, 0.25);
+}
+
+.login-card form > button:active {
+  transform: scale(0.99);
+}
+
+.login-card form > button:disabled {
+  background: #93c5fd;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.message {
+  margin-top: 18px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #dc2626;
+  font-size: 14px;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.auth-switch {
+  margin-top: 18px;
+  text-align: center;
+}
+
+.auth-switch p {
+  margin: 0;
+  color: #64748b;
+  font-size: 13px;
+}
+
+.auth-switch button {
+  width: auto !important;
+  min-width: 0 !important;
+  height: auto !important;
+  margin-left: 5px;
+  padding: 0 !important;
+  border: none !important;
+  background: transparent !important;
+  color: #1e3a5f;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.auth-switch button:hover {
+  text-decoration: underline;
+}
+
+.recruiter-portal-button {
+  width: 100%;
+  height: 42px;
+  margin-top: 14px;
+  padding: 0 14px;
+  border: 1px solid #1e3a5f;
+  border-radius: 9px;
+  background: #ffffff;
+  color: #1e3a5f;
+  font-size: 13px;
+  font-weight: 700;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.recruiter-portal-button:hover {
+  background: #1e3a5f;
+  color: #ffffff;
+  box-shadow:
+    0 5px 12px rgba(30, 58, 95, 0.18);
+}
+
+.recruiter-portal-button:active {
+  transform: scale(0.99);
+}
+
+@media (max-width: 500px) {
+  .login-page {
+    padding: 20px;
+  }
+
+  .login-card {
+    padding: 35px 25px;
+    border-radius: 14px;
+  }
+
+  .login-card h1 {
+    font-size: 26px;
+  }
+
+  .subtitle {
+    margin-bottom: 28px;
+  }
+}

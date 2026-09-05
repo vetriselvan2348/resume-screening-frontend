@@ -1,0 +1,192 @@
+.recruiter-register-page {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px;
+  background:
+    radial-gradient(
+      circle at top left,
+      #dbeafe 0%,
+      transparent 35%
+    ),
+    radial-gradient(
+      circle at bottom right,
+      #e0e7ff 0%,
+      transparent 35%
+    ),
+    #f8fafc;
+}
+
+.recruiter-register-card {
+  width: 100%;
+  max-width: 440px;
+  background: #ffffff;
+  padding: 45px 42px;
+  border: 1px solid #e5e7eb;
+  border-radius: 18px;
+  box-shadow:
+    0 20px 50px rgba(15, 23, 42, 0.08),
+    0 4px 12px rgba(15, 23, 42, 0.04);
+  animation: recruiterCardAppear 0.45s ease;
+}
+
+@keyframes recruiterCardAppear {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.recruiter-register-card h1 {
+  text-align: center;
+  color: #111827;
+  font-size: 30px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  margin-bottom: 8px;
+}
+
+.recruiter-register-subtitle {
+  text-align: center;
+  color: #6b7280;
+  font-size: 15px;
+  margin-bottom: 32px;
+}
+
+.recruiter-form-group {
+  margin-bottom: 20px;
+}
+
+.recruiter-form-group label {
+  display: block;
+  margin-bottom: 8px;
+  color: #374151;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.recruiter-form-group input {
+  width: 100%;
+  height: 48px;
+  padding: 0 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 9px;
+  background: #ffffff;
+  color: #111827;
+  font-size: 15px;
+  outline: none;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.recruiter-form-group input::placeholder {
+  color: #9ca3af;
+}
+
+.recruiter-form-group input:hover {
+  border-color: #9ca3af;
+}
+
+.recruiter-form-group input:focus {
+  border-color: #1e3a5f;
+  box-shadow:
+    0 0 0 3px rgba(30, 58, 95, 0.12);
+}
+
+.recruiter-register-card form > button {
+  width: 100%;
+  height: 48px;
+  margin-top: 5px;
+  border: none;
+  border-radius: 9px;
+  background: #1e3a5f;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    transform 0.1s ease,
+    box-shadow 0.2s ease;
+}
+
+.recruiter-register-card form > button:hover {
+  background: #172f4d;
+  box-shadow:
+    0 6px 15px rgba(30, 58, 95, 0.25);
+}
+
+.recruiter-register-card form > button:active {
+  transform: scale(0.99);
+}
+
+.recruiter-register-card form > button:disabled {
+  background: #94a3b8;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.recruiter-message {
+  margin-top: 18px;
+  padding: 12px 14px;
+  border-radius: 8px;
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #dc2626;
+  font-size: 14px;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.recruiter-message.success {
+  background: #f0fdf4;
+  border-color: #bbf7d0;
+  color: #16a34a;
+}
+
+.back-candidate-button {
+  width: 100%;
+  height: 42px;
+  margin-top: 14px;
+  padding: 0 14px;
+  border: 1px solid #d1d5db;
+  border-radius: 9px;
+  background: #ffffff;
+  color: #475569;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    color 0.2s ease,
+    border-color 0.2s ease;
+}
+
+.back-candidate-button:hover {
+  background: #f8fafc;
+  border-color: #94a3b8;
+  color: #1e293b;
+}
+
+@media (max-width: 500px) {
+  .recruiter-register-page {
+    padding: 20px;
+  }
+
+  .recruiter-register-card {
+    padding: 35px 25px;
+    border-radius: 14px;
+  }
+
+  .recruiter-register-card h1 {
+    font-size: 26px;
+  }
+}

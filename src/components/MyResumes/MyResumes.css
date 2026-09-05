@@ -1,0 +1,249 @@
+.my-resumes {
+  width: 100%;
+}
+
+.my-resumes .resumes-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+}
+
+.my-resumes .resumes-heading {
+  min-width: 0;
+}
+
+.my-resumes .resumes-heading h2 {
+  margin: 0;
+  color: #0f172a;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.my-resumes .resumes-heading p {
+  margin: 5px 0 0;
+  color: #64748b;
+  font-size: 13px;
+}
+
+.my-resumes .resume-refresh-button {
+  width: auto !important;
+  min-width: 0 !important;
+  max-width: max-content;
+  height: 34px;
+  padding: 0 11px !important;
+  margin: 0 !important;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  flex: 0 0 auto !important;
+  border: 1px solid #dbe2ea;
+  border-radius: 7px;
+  background: #ffffff;
+  color: #2563eb;
+  font-size: 11px;
+  font-weight: 600;
+  line-height: 1;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.my-resumes .resume-refresh-button span {
+  font-size: 15px;
+  line-height: 1;
+}
+
+.my-resumes .resume-refresh-button:hover:not(:disabled) {
+  border-color: #bfdbfe;
+  background: #eff6ff;
+}
+
+.my-resumes .resume-refresh-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.my-resumes .resume-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.my-resumes .resume-card {
+  min-width: 0;
+  padding: 16px;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+  background: #ffffff;
+  box-sizing: border-box;
+}
+
+.my-resumes .resume-card-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  min-width: 0;
+}
+
+.my-resumes .file-type-icon {
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  background: #eff6ff;
+  color: #2563eb;
+  font-size: 10px;
+  font-weight: 800;
+}
+
+.my-resumes .resume-info {
+  min-width: 0;
+  flex: 1;
+}
+
+.my-resumes .resume-info h3 {
+  margin: 0;
+  overflow: hidden;
+  color: #0f172a;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.4;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.my-resumes .resume-info span {
+  display: block;
+  margin-top: 4px;
+  color: #64748b;
+  font-size: 11px;
+}
+
+.my-resumes .resume-divider {
+  height: 1px;
+  margin: 14px 0;
+  background: #eef2f7;
+}
+
+.my-resumes .resume-actions {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.my-resumes .delete-button {
+  width: auto !important;
+  min-width: 70px;
+  height: 30px;
+  padding: 0 10px;
+  border: 1px solid #fecaca;
+  border-radius: 6px;
+  background: #ffffff;
+  color: #dc2626;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.my-resumes .delete-button:hover:not(:disabled) {
+  background: #fef2f2;
+}
+
+.my-resumes .delete-button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.my-resumes .resume-message {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-bottom: 16px;
+  padding: 10px 12px;
+  border: 1px solid #fecaca;
+  border-radius: 8px;
+  background: #fef2f2;
+  color: #dc2626;
+}
+
+.my-resumes .resume-message span {
+  font-weight: 700;
+}
+
+.my-resumes .resume-message p {
+  margin: 0;
+  font-size: 12px;
+}
+
+.my-resumes .resume-loading {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.my-resumes .resume-loading p {
+  margin: 10px 0 0;
+  color: #64748b;
+  font-size: 13px;
+}
+
+.my-resumes .resume-spinner {
+  width: 24px;
+  height: 24px;
+  margin: 0 auto;
+  border: 3px solid #e2e8f0;
+  border-top-color: #2563eb;
+  border-radius: 50%;
+  animation: resume-spin 0.8s linear infinite;
+}
+
+.my-resumes .resume-empty {
+  padding: 40px 20px;
+  border: 1px dashed #cbd5e1;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.my-resumes .resume-empty-icon {
+  margin-bottom: 10px;
+  font-size: 30px;
+}
+
+.my-resumes .resume-empty h3 {
+  margin: 0;
+  color: #334155;
+  font-size: 15px;
+}
+
+.my-resumes .resume-empty p {
+  margin: 6px 0 0;
+  color: #64748b;
+  font-size: 12px;
+}
+
+@keyframes resume-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 700px) {
+  .my-resumes .resume-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 480px) {
+  .my-resumes .resumes-header {
+    align-items: flex-start;
+  }
+
+  .my-resumes .resume-refresh-button {
+    height: 32px;
+    padding: 0 9px !important;
+  }
+}
