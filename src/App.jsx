@@ -6,6 +6,10 @@ import CandidateDashboard from "./pages/Candidate/CandidateDashboard";
 import "./App.css";
 
 function App() {
+  const [theme, setTheme] = useState(
+    localStorage.getItem("theme") || "light"
+  );
+
   const [token, setToken] = useState(
     localStorage.getItem("token")
   );
@@ -17,21 +21,16 @@ function App() {
   const [showRecruiterRegister, setShowRecruiterRegister] =
     useState(false);
 
-  const [darkMode, setDarkMode] = useState(
-    localStorage.getItem("theme") === "dark"
-  );
-
   useEffect(() => {
-    document.documentElement.setAttribute(
-      "data-theme",
-      darkMode ? "dark" : "light"
-    );
+    document.documentElement.dataset.theme = theme;
+    localStorage.setItem("theme", theme);
+  }, [theme]);
 
-    localStorage.setItem(
-      "theme",
-      darkMode ? "dark" : "light"
+  const toggleTheme = () => {
+    setTheme((current) =>
+      current === "dark" ? "light" : "dark"
     );
-  }, [darkMode]);
+  };
 
   const handleLogin = (newToken) => {
     setToken(newToken);
@@ -75,48 +74,40 @@ function App() {
     setShowRecruiterRegister(false);
   };
 
-  const toggleTheme = () => {
-    setDarkMode((previous) => !previous);
-  };
-
-  const themeButton = (
-    <button
-      type="button"
-      className="theme-toggle"
-      onClick={toggleTheme}
-      aria-label="Toggle theme"
-    >
-      {darkMode ? "☀️ Light" : "🌙 Dark"}
-    </button>
-  );
-
   if (!token) {
     if (showRecruiterRegister) {
       return (
-        <>
-          {themeButton}
-          <RecruiterRegister
-            onBack={backToCandidatePortal}
-          />
-        </>
+        <RecruiterRegister
+          onBack={backToCandidatePortal}
+        />
       );
     }
 
     return (
-      <>
-        {themeButton}
-        <Login
-          onLogin={handleLogin}
-          onRecruiterPortal={openRecruiterRegister}
-        />
-      </>
+      <Login
+        onLogin={handleLogin}
+        onRecruiterPortal={openRecruiterRegister}
+      />
     );
   }
 
   if (role === "RECRUITER") {
     return (
       <>
-        {themeButton}
+        <button
+          type="button"
+          className="theme-toggle"
+          onClick={toggleTheme}
+          aria-label="Toggle theme"
+          title={
+            theme === "dark"
+              ? "Switch to light mode"
+              : "Switch to dark mode"
+          }
+        >
+          {theme === "dark" ? "☀" : "☾"}
+        </button>
+
         <RecruiterDashboard
           onLogout={handleLogout}
         />
@@ -126,26 +117,20 @@ function App() {
 
   if (role === "CANDIDATE") {
     return (
-      <>
-        {themeButton}
-        <CandidateDashboard
-          onLogout={handleLogout}
-        />
-      </>
+      <CandidateDashboard
+        onLogout={handleLogout}
+      />
     );
   }
 
   return (
-    <>
-      {themeButton}
-      <div>
-        <h2>Unknown user role</h2>
+    <div>
+      <h2>Unknown user role</h2>
 
-        <button onClick={handleLogout}>
-          Logout
-        </button>
-      </div>
-    </>
+      <button onClick={handleLogout}>
+        Logout
+      </button>
+    </div>
   );
 }
 
