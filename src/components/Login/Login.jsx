@@ -43,13 +43,32 @@ function Login({ onLogin, onRecruiterPortal }) {
     } catch (error) {
       console.error("Login error:", error);
 
-      if (error.response) {
-        setMessage(
-          error.response.data?.message ||
-          "Invalid email or password"
-        );
+      const status = error.response?.status;
+      const data = error.response?.data;
+
+      const errorMessage =
+        typeof data === "string"
+          ? data
+          : data?.message || data?.error || "";
+
+      const lowerMessage = errorMessage.toLowerCase();
+
+      if (
+        status === 401 ||
+        status === 403 ||
+        lowerMessage.includes("verify") ||
+        lowerMessage.includes("verified") ||
+        lowerMessage.includes("verification") ||
+        lowerMessage.includes("email")
+      ) {
+        setRegisterEmail(loginEmail);
+        setOtp("");
+        setMessage("Please verify your email before logging in.");
+        setMode("registration-otp");
       } else {
-        setMessage("Cannot connect to backend");
+        setMessage(
+          errorMessage || "Invalid email or password"
+        );
       }
     } finally {
       setLoading(false);
@@ -189,6 +208,7 @@ function Login({ onLogin, onRecruiterPortal }) {
       setMessage(
         "If an account exists with this email, a password reset OTP has been sent."
       );
+
       setOtp("");
       setMode("reset-password");
     } catch (error) {
@@ -280,7 +300,6 @@ function Login({ onLogin, onRecruiterPortal }) {
   return (
     <div className="login-page">
       <div className="login-card">
-
         <h1>Vemora</h1>
 
         <p className="subtitle">
@@ -297,7 +316,6 @@ function Login({ onLogin, onRecruiterPortal }) {
 
         {mode === "register" && (
           <form onSubmit={handleRegister}>
-
             <div className="form-group">
               <label>Name</label>
               <input
@@ -331,8 +349,14 @@ function Login({ onLogin, onRecruiterPortal }) {
                   minLength={6}
                   required
                 />
-                <button type="button" className="password-toggle" onClick={() => setShowRegisterPassword(!showRegisterPassword)}>
-                  {showRegisterPassword ? "👁" : "👁"}
+                <button
+                  type="button"
+                  className="password-toggle"
+                  onClick={() =>
+                    setShowRegisterPassword(!showRegisterPassword)
+                  }
+                >
+                  👁
                 </button>
               </div>
             </div>
@@ -348,8 +372,14 @@ function Login({ onLogin, onRecruiterPortal }) {
                   minLength={6}
                   required
                 />
-                <button type="button" className="password-toggle" onClick={() => setShowConfirmPassword(!showConfirmPassword)}>
-                  {showConfirmPassword ? "👁" : "👁"}
+                <button
+                  type="button"
+                  className="password-toggle"
+                  onClick={() =>
+                    setShowConfirmPassword(!showConfirmPassword)
+                  }
+                >
+                  👁
                 </button>
               </div>
             </div>
@@ -357,13 +387,11 @@ function Login({ onLogin, onRecruiterPortal }) {
             <button type="submit" disabled={loading}>
               {loading ? "Creating Account..." : "Create Candidate Account"}
             </button>
-
           </form>
         )}
 
         {mode === "registration-otp" && (
           <form onSubmit={handleRegistrationOtp}>
-
             <div className="form-group">
               <label>Email</label>
               <input
@@ -410,13 +438,11 @@ function Login({ onLogin, onRecruiterPortal }) {
             >
               Back to Login
             </button>
-
           </form>
         )}
 
         {mode === "forgot-password" && (
           <form onSubmit={handleForgotPassword}>
-
             <div className="form-group">
               <label>Email</label>
               <input
@@ -440,13 +466,11 @@ function Login({ onLogin, onRecruiterPortal }) {
             >
               Back to Login
             </button>
-
           </form>
         )}
 
         {mode === "reset-password" && (
           <form onSubmit={handleResetPassword}>
-
             <div className="form-group">
               <label>Email</label>
               <input
@@ -488,7 +512,7 @@ function Login({ onLogin, onRecruiterPortal }) {
               <label>Confirm New Password</label>
               <input
                 type="password"
-                placeholder="Confirm new password"
+                placeholder="Confirm your new password"
                 value={confirmResetPassword}
                 onChange={(e) =>
                   setConfirmResetPassword(e.target.value)
@@ -510,13 +534,11 @@ function Login({ onLogin, onRecruiterPortal }) {
             >
               Back to Login
             </button>
-
           </form>
         )}
 
         {mode === "login" && (
           <form onSubmit={handleLogin}>
-
             <div className="form-group">
               <label>Email</label>
               <input
@@ -538,7 +560,13 @@ function Login({ onLogin, onRecruiterPortal }) {
                   onChange={(e) => setLoginPassword(e.target.value)}
                   required
                 />
-                <button type="button" className="password-toggle" onClick={() => setShowLoginPassword(!showLoginPassword)}>
+                <button
+                  type="button"
+                  className="password-toggle"
+                  onClick={() =>
+                    setShowLoginPassword(!showLoginPassword)
+                  }
+                >
                   👁
                 </button>
               </div>
@@ -556,7 +584,6 @@ function Login({ onLogin, onRecruiterPortal }) {
             >
               Forgot Password?
             </button>
-
           </form>
         )}
 
@@ -603,7 +630,6 @@ function Login({ onLogin, onRecruiterPortal }) {
             </p>
           </div>
         )}
-
       </div>
     </div>
   );
