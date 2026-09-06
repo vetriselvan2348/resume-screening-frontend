@@ -426,36 +426,40 @@ function RecruiterDashboard({ onLogout }) {
 
               <div className="profile-form-field">
                 <label htmlFor="recruiter-password">New Password</label>
-                <input
-                  id="recruiter-password"
-                  name="password"
-                  type={showProfilePassword ? "text" : "password"}
-                  value={profileForm.password}
-                  onChange={handleProfileChange}
-                  disabled={savingProfile}
-                  minLength={6}
-                  placeholder="Leave blank to keep current password"
-                />
-                <button type="button" onClick={() => setShowProfilePassword(!showProfilePassword)}>
-                  {showProfilePassword ? "Hide" : "Show"}
-                </button>
+                <div className="password-field">
+                  <input
+                    id="recruiter-password"
+                    name="password"
+                    type={showProfilePassword ? "text" : "password"}
+                    value={profileForm.password}
+                    onChange={handleProfileChange}
+                    disabled={savingProfile}
+                    minLength={6}
+                    placeholder="Leave blank to keep current password"
+                  />
+                  <button type="button" className="password-toggle" onClick={() => setShowProfilePassword(!showProfilePassword)}>
+                    👁
+                  </button>
+                </div>
               </div>
 
               <div className="profile-form-field">
                 <label htmlFor="recruiter-confirm-password">Confirm Password</label>
-                <input
-                  id="recruiter-confirm-password"
-                  name="confirmPassword"
-                  type={showProfileConfirmPassword ? "text" : "password"}
-                  value={profileForm.confirmPassword}
-                  onChange={handleProfileChange}
-                  disabled={savingProfile}
-                  minLength={6}
-                  placeholder="Re-enter new password"
-                />
-                <button type="button" onClick={() => setShowProfileConfirmPassword(!showProfileConfirmPassword)}>
-                  {showProfileConfirmPassword ? "Hide" : "Show"}
-                </button>
+                <div className="password-field">
+                  <input
+                    id="recruiter-confirm-password"
+                    name="confirmPassword"
+                    type={showProfileConfirmPassword ? "text" : "password"}
+                    value={profileForm.confirmPassword}
+                    onChange={handleProfileChange}
+                    disabled={savingProfile}
+                    minLength={6}
+                    placeholder="Re-enter new password"
+                  />
+                  <button type="button" className="password-toggle" onClick={() => setShowProfileConfirmPassword(!showProfileConfirmPassword)}>
+                    👁
+                  </button>
+                </div>
               </div>
 
               {profileError && (

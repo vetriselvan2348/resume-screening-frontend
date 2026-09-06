@@ -6,6 +6,9 @@ function RecruiterRegister({ onBack }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const [showAdminPassword, setShowAdminPassword] = useState(false);
   const [confirmPassword, setConfirmPassword] = useState("");
   const [adminPassword, setAdminPassword] = useState("");
 
@@ -114,43 +117,58 @@ function RecruiterRegister({ onBack }) {
           <div className="recruiter-form-group">
             <label>Password</label>
 
-            <input
-              type="password"
-              placeholder="Create recruiter password"
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              minLength={6}
-              required
-            />
+            <div className="password-field">
+              <input
+                type={showPassword ? "text" : "password"}
+                placeholder="Create recruiter password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                minLength={6}
+                required
+              />
+              <button type="button" className="password-toggle" onClick={() => setShowPassword(!showPassword)}>
+                👁
+              </button>
+            </div>
           </div>
 
           <div className="recruiter-form-group">
             <label>Confirm Password</label>
 
-            <input
-              type="password"
-              placeholder="Confirm recruiter password"
-              value={confirmPassword}
-              onChange={(e) =>
-                setConfirmPassword(e.target.value)
-              }
-              minLength={6}
-              required
-            />
+            <div className="password-field">
+              <input
+                type={showConfirmPassword ? "text" : "password"}
+                placeholder="Confirm recruiter password"
+                value={confirmPassword}
+                onChange={(e) =>
+                  setConfirmPassword(e.target.value)
+                }
+                minLength={6}
+                required
+              />
+              <button type="button" className="password-toggle" onClick={() => setShowConfirmPassword(!showConfirmPassword)}>
+                👁
+              </button>
+            </div>
           </div>
 
           <div className="recruiter-form-group">
             <label>Admin Password</label>
 
-            <input
-              type="password"
-              placeholder="Enter admin authorization password"
-              value={adminPassword}
-              onChange={(e) =>
-                setAdminPassword(e.target.value)
-              }
-              required
-            />
+            <div className="password-field">
+              <input
+                type={showAdminPassword ? "text" : "password"}
+                placeholder="Enter admin authorization password"
+                value={adminPassword}
+                onChange={(e) =>
+                  setAdminPassword(e.target.value)
+                }
+                required
+              />
+              <button type="button" className="password-toggle" onClick={() => setShowAdminPassword(!showAdminPassword)}>
+                👁
+              </button>
+            </div>
           </div>
 
           <button

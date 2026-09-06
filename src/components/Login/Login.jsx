@@ -322,26 +322,36 @@ function Login({ onLogin, onRecruiterPortal }) {
 
             <div className="form-group">
               <label>Password</label>
-              <input
-                type="password"
-                placeholder="Enter your password"
-                value={registerPassword}
-                onChange={(e) => setRegisterPassword(e.target.value)}
-                minLength={6}
-                required
-              />
+              <div className="password-field">
+                <input
+                  type={showRegisterPassword ? "text" : "password"}
+                  placeholder="Enter your password"
+                  value={registerPassword}
+                  onChange={(e) => setRegisterPassword(e.target.value)}
+                  minLength={6}
+                  required
+                />
+                <button type="button" className="password-toggle" onClick={() => setShowRegisterPassword(!showRegisterPassword)}>
+                  {showRegisterPassword ? "👁" : "👁"}
+                </button>
+              </div>
             </div>
 
             <div className="form-group">
               <label>Confirm Password</label>
-              <input
-                type="password"
-                placeholder="Confirm your password"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                minLength={6}
-                required
-              />
+              <div className="password-field">
+                <input
+                  type={showConfirmPassword ? "text" : "password"}
+                  placeholder="Confirm your password"
+                  value={confirmPassword}
+                  onChange={(e) => setConfirmPassword(e.target.value)}
+                  minLength={6}
+                  required
+                />
+                <button type="button" className="password-toggle" onClick={() => setShowConfirmPassword(!showConfirmPassword)}>
+                  {showConfirmPassword ? "👁" : "👁"}
+                </button>
+              </div>
             </div>
 
             <button type="submit" disabled={loading}>
@@ -520,13 +530,18 @@ function Login({ onLogin, onRecruiterPortal }) {
 
             <div className="form-group">
               <label>Password</label>
-              <input
-                type="password"
-                placeholder="Enter your password"
-                value={loginPassword}
-                onChange={(e) => setLoginPassword(e.target.value)}
-                required
-              />
+              <div className="password-field">
+                <input
+                  type={showLoginPassword ? "text" : "password"}
+                  placeholder="Enter your password"
+                  value={loginPassword}
+                  onChange={(e) => setLoginPassword(e.target.value)}
+                  required
+                />
+                <button type="button" className="password-toggle" onClick={() => setShowLoginPassword(!showLoginPassword)}>
+                  👁
+                </button>
+              </div>
             </div>
 
             <button type="submit" disabled={loading}>
