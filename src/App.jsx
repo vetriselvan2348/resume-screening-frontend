@@ -17,6 +17,22 @@ function App() {
   const [showRecruiterRegister, setShowRecruiterRegister] =
     useState(false);
 
+  const [darkMode, setDarkMode] = useState(
+    localStorage.getItem("theme") === "dark"
+  );
+
+  useEffect(() => {
+    document.documentElement.setAttribute(
+      "data-theme",
+      darkMode ? "dark" : "light"
+    );
+
+    localStorage.setItem(
+      "theme",
+      darkMode ? "dark" : "light"
+    );
+  }, [darkMode]);
+
   const handleLogin = (newToken) => {
     setToken(newToken);
     setRole(localStorage.getItem("role"));
@@ -59,47 +75,77 @@ function App() {
     setShowRecruiterRegister(false);
   };
 
+  const toggleTheme = () => {
+    setDarkMode((previous) => !previous);
+  };
+
+  const themeButton = (
+    <button
+      type="button"
+      className="theme-toggle"
+      onClick={toggleTheme}
+      aria-label="Toggle theme"
+    >
+      {darkMode ? "☀️ Light" : "🌙 Dark"}
+    </button>
+  );
+
   if (!token) {
     if (showRecruiterRegister) {
       return (
-        <RecruiterRegister
-          onBack={backToCandidatePortal}
-        />
+        <>
+          {themeButton}
+          <RecruiterRegister
+            onBack={backToCandidatePortal}
+          />
+        </>
       );
     }
 
     return (
-      <Login
-        onLogin={handleLogin}
-        onRecruiterPortal={openRecruiterRegister}
-      />
+      <>
+        {themeButton}
+        <Login
+          onLogin={handleLogin}
+          onRecruiterPortal={openRecruiterRegister}
+        />
+      </>
     );
   }
 
   if (role === "RECRUITER") {
     return (
-      <RecruiterDashboard
-        onLogout={handleLogout}
-      />
+      <>
+        {themeButton}
+        <RecruiterDashboard
+          onLogout={handleLogout}
+        />
+      </>
     );
   }
 
   if (role === "CANDIDATE") {
     return (
-      <CandidateDashboard
-        onLogout={handleLogout}
-      />
+      <>
+        {themeButton}
+        <CandidateDashboard
+          onLogout={handleLogout}
+        />
+      </>
     );
   }
 
   return (
-    <div>
-      <h2>Unknown user role</h2>
+    <>
+      {themeButton}
+      <div>
+        <h2>Unknown user role</h2>
 
-      <button onClick={handleLogout}>
-        Logout
-      </button>
-    </div>
+        <button onClick={handleLogout}>
+          Logout
+        </button>
+      </div>
+    </>
   );
 }
 

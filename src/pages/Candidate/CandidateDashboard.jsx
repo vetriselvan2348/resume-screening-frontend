@@ -154,8 +154,8 @@ function CandidateDashboard({ onLogout }) {
           </div>
 
           <div className="brand-text">
-            <h1>ResumeScreen</h1>
-            <span>Candidate Portal</span>
+            <h1>Vemora</h1>
+            <span>Career Portal</span>
           </div>
         </div>
 
