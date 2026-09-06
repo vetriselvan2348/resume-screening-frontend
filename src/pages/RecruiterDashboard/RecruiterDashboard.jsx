@@ -18,6 +18,9 @@ function RecruiterDashboard({ onLogout }) {
   const [savingProfile, setSavingProfile] = useState(false);
   const [profileMessage, setProfileMessage] = useState("");
   const [profileError, setProfileError] = useState("");
+  const [showProfilePassword, setShowProfilePassword] = useState(false);
+  const [showProfileConfirmPassword, setShowProfileConfirmPassword] = useState(false);
+
   const [profileForm, setProfileForm] = useState({
     name: "",
     password: "",
@@ -426,13 +429,16 @@ function RecruiterDashboard({ onLogout }) {
                 <input
                   id="recruiter-password"
                   name="password"
-                  type="password"
+                  type={showProfilePassword ? "text" : "password"}
                   value={profileForm.password}
                   onChange={handleProfileChange}
                   disabled={savingProfile}
                   minLength={6}
                   placeholder="Leave blank to keep current password"
                 />
+                <button type="button" onClick={() => setShowProfilePassword(!showProfilePassword)}>
+                  {showProfilePassword ? "Hide" : "Show"}
+                </button>
               </div>
 
               <div className="profile-form-field">
@@ -440,13 +446,16 @@ function RecruiterDashboard({ onLogout }) {
                 <input
                   id="recruiter-confirm-password"
                   name="confirmPassword"
-                  type="password"
+                  type={showProfileConfirmPassword ? "text" : "password"}
                   value={profileForm.confirmPassword}
                   onChange={handleProfileChange}
                   disabled={savingProfile}
                   minLength={6}
                   placeholder="Re-enter new password"
                 />
+                <button type="button" onClick={() => setShowProfileConfirmPassword(!showProfileConfirmPassword)}>
+                  {showProfileConfirmPassword ? "Hide" : "Show"}
+                </button>
               </div>
 
               {profileError && (

@@ -7,6 +7,9 @@ function Login({ onLogin, onRecruiterPortal }) {
 
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
+  const [showLoginPassword, setShowLoginPassword] = useState(false);
+  const [showRegisterPassword, setShowRegisterPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
 
   const [name, setName] = useState("");
   const [registerEmail, setRegisterEmail] = useState("");
