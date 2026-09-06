@@ -5,7 +5,7 @@ import MyResumes from "../../components/MyResumes/MyResumes";
 import api from "../../services/api";
 import "./CandidateDashboard.css";
 
-function CandidateDashboard({ onLogout }) {
+function CandidateDashboard({ onLogout, theme, toggleTheme }) {
   const [selectedJob, setSelectedJob] = useState(null);
   const [showProfile, setShowProfile] = useState(false);
 
@@ -23,6 +23,7 @@ function CandidateDashboard({ onLogout }) {
 
   const [profileLoading, setProfileLoading] = useState(false);
   const [profileSaving, setProfileSaving] = useState(false);
+  const [deletingAccount, setDeletingAccount] = useState(false);
   const [profileMessage, setProfileMessage] = useState("");
   const [profileError, setProfileError] = useState("");
 
@@ -139,6 +140,39 @@ function CandidateDashboard({ onLogout }) {
     }
   };
 
+  const handleDeleteAccount = async () => {
+    const confirmed = window.confirm(
+      "Are you sure you want to delete your account? This will permanently delete your profile, resumes, and screening results."
+    );
+
+    if (!confirmed) {
+      return;
+    }
+
+    try {
+      setDeletingAccount(true);
+      setProfileError("");
+
+      await api.delete("/api/users/me");
+
+      localStorage.removeItem("token");
+      localStorage.removeItem("role");
+      localStorage.removeItem("user");
+
+      onLogout();
+    } catch (error) {
+      console.error("Failed to delete account:", error);
+
+      if (error.response?.data?.message) {
+        setProfileError(error.response.data.message);
+      } else {
+        setProfileError("Failed to delete account.");
+      }
+    } finally {
+      setDeletingAccount(false);
+    }
+  };
+
   useEffect(() => {
     loadProfile();
   }, []);
@@ -185,6 +219,20 @@ function CandidateDashboard({ onLogout }) {
             <span className="profile-arrow">
               {showProfile ? "⌃" : "⌄"}
             </span>
+          </button>
+
+          <button
+            type="button"
+            className="theme-toggle candidate-theme-toggle"
+            onClick={toggleTheme}
+            aria-label="Toggle theme"
+            title={
+              theme === "dark"
+                ? "Switch to light mode"
+                : "Switch to dark mode"
+            }
+          >
+            {theme === "dark" ? "☀" : "☾"}
           </button>
 
           <button
@@ -309,6 +357,15 @@ function CandidateDashboard({ onLogout }) {
               )}
 
               <div className="profile-actions">
+
+                <button
+                  type="button"
+                  className="profile-delete-button"
+                  onClick={handleDeleteAccount}
+                  disabled={profileSaving || deletingAccount}
+                >
+                  {deletingAccount ? "Deleting..." : "Delete Account"}
+                </button>
 
                 <button
                   type="button"

@@ -54,12 +54,9 @@ function Login({ onLogin, onRecruiterPortal }) {
       const lowerMessage = errorMessage.toLowerCase();
 
       if (
-        status === 401 ||
-        status === 403 ||
-        lowerMessage.includes("verify") ||
+            lowerMessage.includes("verify") ||
         lowerMessage.includes("verified") ||
-        lowerMessage.includes("verification") ||
-        lowerMessage.includes("email")
+        lowerMessage.includes("verification")
       ) {
         setRegisterEmail(loginEmail);
         setOtp("");
