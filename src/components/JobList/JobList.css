@@ -3427,3 +3427,318 @@ html[data-theme="light"] .empty-clear-button {
     width: 100%;
   }
 }
+
+.jobs-list {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 16px !important;
+  width: 100% !important;
+}
+
+.recruiter-job-card {
+  width: 100% !important;
+  max-width: none !important;
+  box-sizing: border-box !important;
+}
+
+.recruiter-job-information {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) 150px !important;
+  gap: 10px !important;
+  width: 100% !important;
+}
+
+.job-information-item {
+  min-width: 0 !important;
+}
+
+.recruiter-job-footer {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 14px !important;
+  width: 100% !important;
+}
+
+.job-card-actions {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-end !important;
+  gap: 8px !important;
+  flex-shrink: 0 !important;
+}
+
+.job-card-actions button {
+  box-sizing: border-box !important;
+  white-space: nowrap !important;
+}
+
+.delete-job-button {
+  min-width: 72px !important;
+}
+
+.view-applicants-button {
+  min-width: 138px !important;
+}
+
+@media (max-width: 700px) {
+  .recruiter-job-information {
+    grid-template-columns: 1fr !important;
+  }
+
+  .recruiter-job-footer {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+
+  .recruiter-job-footer > span {
+    width: 100% !important;
+  }
+
+  .job-card-actions {
+    width: 100% !important;
+    display: grid !important;
+    grid-template-columns: minmax(80px, 0.35fr) minmax(0, 1fr) !important;
+    gap: 8px !important;
+  }
+
+  .job-card-actions button {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+}
+
+@media (max-width: 450px) {
+  .recruiter-job-card {
+    padding: 14px !important;
+  }
+
+  .recruiter-job-header {
+    gap: 10px !important;
+  }
+
+  .applicant-count-badge {
+    min-width: 64px !important;
+  }
+
+  .job-card-actions {
+    grid-template-columns: 1fr 1.6fr !important;
+  }
+
+  .view-applicants-button {
+    min-width: 0 !important;
+  }
+}
+
+@media (max-width: 350px) {
+  .job-card-actions {
+    grid-template-columns: 1fr !important;
+  }
+
+  .job-card-actions button {
+    width: 100% !important;
+  }
+}
+
+.job-list-section {
+  position: relative !important;
+  overflow: visible !important;
+  margin-top: 0 !important;
+  padding: 28px 32px !important;
+  box-sizing: border-box !important;
+}
+
+.jobs-list {
+  display: grid !important;
+  grid-template-columns: repeat(3, minmax(0, 1fr)) !important;
+  gap: 14px !important;
+  width: 100% !important;
+  margin-top: 16px !important;
+}
+
+.recruiter-job-card {
+  width: 100% !important;
+  min-width: 0 !important;
+  max-width: none !important;
+  padding: 14px !important;
+  box-sizing: border-box !important;
+  border-radius: 12px !important;
+}
+
+.recruiter-job-header {
+  min-width: 0 !important;
+  gap: 8px !important;
+}
+
+.recruiter-job-identity {
+  min-width: 0 !important;
+  overflow: hidden !important;
+}
+
+.recruiter-job-identity > div:last-child {
+  min-width: 0 !important;
+}
+
+.recruiter-job-identity h3 {
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  font-size: 15px !important;
+}
+
+.recruiter-job-description {
+  height: 36px !important;
+  margin: 10px 0 !important;
+  overflow: hidden !important;
+  display: -webkit-box !important;
+  -webkit-line-clamp: 2 !important;
+  -webkit-box-orient: vertical !important;
+}
+
+.recruiter-job-information {
+  display: grid !important;
+  grid-template-columns: minmax(0, 1fr) 90px !important;
+  gap: 7px !important;
+  width: 100% !important;
+}
+
+.job-information-item {
+  min-width: 0 !important;
+  padding: 9px 10px !important;
+  border-radius: 8px !important;
+  box-sizing: border-box !important;
+}
+
+.job-information-item p {
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  font-size: 12px !important;
+}
+
+.recruiter-job-footer {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: stretch !important;
+  gap: 9px !important;
+  margin-top: 12px !important;
+}
+
+.recruiter-job-footer > span {
+  font-size: 10px !important;
+  white-space: nowrap !important;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+}
+
+.job-card-actions {
+  display: grid !important;
+  grid-template-columns: 72px minmax(0, 1fr) !important;
+  gap: 6px !important;
+  width: 100% !important;
+}
+
+.job-card-actions button {
+  width: 100% !important;
+  min-width: 0 !important;
+  height: 34px !important;
+  padding: 0 8px !important;
+  font-size: 11px !important;
+  box-sizing: border-box !important;
+  white-space: nowrap !important;
+}
+
+.delete-job-button {
+  min-width: 0 !important;
+}
+
+.view-applicants-button {
+  min-width: 0 !important;
+}
+
+.applicant-count-badge {
+  flex-shrink: 0 !important;
+  width: 58px !important;
+  min-width: 58px !important;
+  height: 50px !important;
+  box-sizing: border-box !important;
+}
+
+.applicant-count-badge strong {
+  font-size: 15px !important;
+}
+
+.applicant-count-badge span {
+  font-size: 8px !important;
+}
+
+@media (max-width: 1100px) {
+  .jobs-list {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+@media (max-width: 760px) {
+  .job-list-section {
+    padding: 22px 18px !important;
+  }
+
+  .jobs-list {
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+
+  .recruiter-job-card {
+    padding: 14px !important;
+  }
+
+  .recruiter-job-information {
+    grid-template-columns: minmax(0, 1fr) 110px !important;
+  }
+
+  .recruiter-job-footer {
+    flex-direction: row !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+  }
+
+  .recruiter-job-footer > span {
+    flex: 1 !important;
+    min-width: 0 !important;
+  }
+
+  .job-card-actions {
+    width: auto !important;
+    min-width: 190px !important;
+  }
+}
+
+@media (max-width: 520px) {
+  .job-list-section {
+    padding: 18px 12px !important;
+  }
+
+  .recruiter-job-information {
+    grid-template-columns: 1fr !important;
+  }
+
+  .recruiter-job-footer {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+
+  .job-card-actions {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+}
+
+.job-list-section {
+  margin-top: 22px !important;
+}
+
+@media (max-width: 760px) {
+  .job-list-section {
+    margin-top: 18px !important;
+  }
+}

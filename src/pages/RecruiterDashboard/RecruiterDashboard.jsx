@@ -179,6 +179,43 @@ function RecruiterDashboard({ onLogout, theme, toggleTheme }) {
     setProfileMessage("");
   };
 
+  const handleDeleteAccount = async () => {
+    const confirmed = window.confirm(
+      "Are you sure you want to delete your recruiter account? This will permanently delete your jobs and related screening data."
+    );
+
+    if (!confirmed) {
+      return;
+    }
+
+    try {
+      setSavingProfile(true);
+      setProfileError("");
+
+      await api.delete("/api/users/me");
+
+      localStorage.removeItem("token");
+      localStorage.removeItem("role");
+      localStorage.removeItem("user");
+
+      onLogout();
+    } catch (error) {
+      console.error("Failed to delete recruiter account:", error);
+
+      if (error.response?.status === 401) {
+        onLogout();
+        return;
+      }
+
+      setProfileError(
+        error.response?.data?.message ||
+        "Failed to delete account."
+      );
+    } finally {
+      setSavingProfile(false);
+    }
+  };
+
   const saveProfile = async (event) => {
     event.preventDefault();
     setProfileError("");
@@ -487,19 +524,31 @@ function RecruiterDashboard({ onLogout, theme, toggleTheme }) {
               <div className="profile-edit-actions">
                 <button
                   type="button"
-                  className="profile-cancel-button"
-                  onClick={closeProfileEditor}
+                  className="profile-delete-account-button"
+                  onClick={handleDeleteAccount}
                   disabled={savingProfile}
                 >
-                  Cancel
+                  {savingProfile ? "Deleting..." : "Delete Account"}
                 </button>
-                <button
-                  type="submit"
-                  className="profile-save-button"
-                  disabled={savingProfile}
-                >
-                  {savingProfile ? "Saving..." : "Save Changes"}
-                </button>
+
+                <div className="profile-edit-actions-right">
+                  <button
+                    type="button"
+                    className="profile-cancel-button"
+                    onClick={closeProfileEditor}
+                    disabled={savingProfile}
+                  >
+                    Cancel
+                  </button>
+
+                  <button
+                    type="submit"
+                    className="profile-save-button"
+                    disabled={savingProfile}
+                  >
+                    {savingProfile ? "Saving..." : "Save Changes"}
+                  </button>
+                </div>
               </div>
             </form>
           </section>
