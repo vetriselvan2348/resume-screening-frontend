@@ -664,35 +664,37 @@ function JobList({
 
             {filteredMyJobs.length === 0 ? (
 
-              <div className="job-list-empty">
+                <div className="job-list-empty job-list-empty-modern">
+                  <div className="empty-state-visual">
+                    <div className="empty-state-icon">⌕</div>
+                  </div>
 
-                <div className="job-list-empty-icon">
+                  <div className="empty-state-content">
+                    <span className="empty-state-label">
+                      JOB SEARCH
+                    </span>
 
-                  🔍
+                    <h3>No jobs found</h3>
 
+                    <p>
+                      No jobs match "{jobSearchTerm}".
+                    </p>
+
+                    <div className="empty-state-tips">
+                      <span>✓ Try a different keyword</span>
+                      <span>✓ Check your spelling</span>
+                      <span>✓ Clear search to see all your jobs</span>
+                    </div>
+
+                    <button
+                      type="button"
+                      className="empty-clear-button"
+                      onClick={() => setJobSearchTerm("")}
+                    >
+                      Clear Search
+                    </button>
+                  </div>
                 </div>
-
-                <h3>No jobs found</h3>
-
-                <p>
-
-                  No jobs match "{jobSearchTerm}".
-
-                </p>
-
-                <button
-
-                  type="button"
-
-                  onClick={() => setJobSearchTerm("")}
-
-                >
-
-                  Clear Search
-
-                </button>
-
-              </div>
 
             ) : (
 
