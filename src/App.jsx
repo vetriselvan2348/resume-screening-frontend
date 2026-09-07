@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react";
+import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import Login from "./components/Login/Login";
 import RecruiterRegister from "./components/RecruiterRegister/RecruiterRegister";
 import RecruiterDashboard from "./pages/RecruiterDashboard/RecruiterDashboard";
 import CandidateDashboard from "./pages/Candidate/CandidateDashboard";
+import JobDetails from "./pages/JobDetails/JobDetails";
 import "./App.css";
 
 function App() {
@@ -20,6 +22,8 @@ function App() {
 
   const [showRecruiterRegister, setShowRecruiterRegister] =
     useState(false);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     document.documentElement.dataset.theme = theme;
@@ -46,6 +50,8 @@ function App() {
     setToken(null);
     setRole(null);
     setShowRecruiterRegister(false);
+
+    navigate("/");
   };
 
   useEffect(() => {
@@ -103,11 +109,28 @@ function App() {
 
   if (role === "CANDIDATE") {
     return (
-      <CandidateDashboard
-        onLogout={handleLogout}
-        theme={theme}
-        toggleTheme={toggleTheme}
-      />
+      <Routes>
+        <Route
+          path="/candidate"
+          element={
+            <CandidateDashboard
+              onLogout={handleLogout}
+              theme={theme}
+              toggleTheme={toggleTheme}
+            />
+          }
+        />
+
+        <Route
+          path="/candidate/job/:jobId"
+          element={<JobDetails />}
+        />
+
+        <Route
+          path="*"
+          element={<Navigate to="/candidate" replace />}
+        />
+      </Routes>
     );
   }
 

@@ -222,29 +222,21 @@ function JobList({
   const screenResume = async (applicant) => {
 
     if (!selectedJob || screeningResume !== null) {
-
       return;
-
     }
 
     try {
 
       setScreeningResume(applicant.resumeId);
-
       setApplicantMessage("");
 
       await api.post("/api/screening", {
-
         jobId: selectedJob.id,
-
         resumeId: applicant.resumeId
-
       });
 
       const response = await api.get(
-
         `/api/screening/job/${selectedJob.id}`
-
       );
 
       setScreeningResults(response.data || []);
@@ -260,19 +252,14 @@ function JobList({
       } else if (error.response?.status === 403) {
 
         setApplicantMessage(
-
           "You are not allowed to screen this resume."
-
         );
 
       } else {
 
         setApplicantMessage(
-
           error.response?.data?.message ||
-
-          "Failed to analyze the candidate resume."
-
+          "Failed to analyze the candidate resume with AI."
         );
 
       }
