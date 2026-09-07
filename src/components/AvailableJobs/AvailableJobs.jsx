@@ -6,26 +6,36 @@ function AvailableJobs({ onSelectJob }) {
   const [jobs, setJobs] = useState([]);
   const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
-  const [message, setMessage] = useState("");
+  const [refreshing, setRefreshing] = useState(false);
+  const [error, setError] = useState("");
 
-  const loadJobs = async () => {
+  const loadJobs = async (isRefresh = false) => {
     try {
-      setLoading(true);
-      setMessage("");
+      if (isRefresh) {
+        setRefreshing(true);
+      } else {
+        setLoading(true);
+      }
+
+      setError("");
 
       const response = await api.get("/api/jobs");
 
-      setJobs(response.data);
-    } catch (error) {
-      console.error("Failed to load jobs:", error);
+      setJobs(response.data || []);
+    } catch (err) {
+      console.error("Failed to load jobs:", err);
 
-      if (error.response?.status === 401) {
-        setMessage("Session expired. Please login again.");
+      if (err.response?.status === 401) {
+        setError("Your session has expired.");
       } else {
-        setMessage("Failed to load available jobs.");
+        setError(
+          err.response?.data?.message ||
+          "Unable to load available jobs."
+        );
       }
     } finally {
       setLoading(false);
+      setRefreshing(false);
     }
   };
 
@@ -34,38 +44,87 @@ function AvailableJobs({ onSelectJob }) {
   }, []);
 
   const filteredJobs = useMemo(() => {
-    const searchValue = search.trim().toLowerCase();
+    const query = search.trim().toLowerCase();
 
-    if (!searchValue) {
+    if (!query) {
       return jobs;
     }
 
     return jobs.filter((job) => {
-      const title = job.title || "";
-      const description = job.description || "";
-      const skills = job.requiredSkills || "";
+      const title =
+        job.title?.toLowerCase() || "";
+
+      const description =
+        job.description?.toLowerCase() || "";
+
+      const skills =
+        job.requiredSkills?.toLowerCase() || "";
 
       return (
-        title.toLowerCase().includes(searchValue) ||
-        description.toLowerCase().includes(searchValue) ||
-        skills.toLowerCase().includes(searchValue)
+        title.includes(query) ||
+        description.includes(query) ||
+        skills.includes(query)
       );
     });
   }, [jobs, search]);
+
+  const getSkills = (requiredSkills) => {
+    if (!requiredSkills) {
+      return [];
+    }
+
+    const normalized = requiredSkills
+      .replace(/\r/g, "\n")
+      .split(/[,;\n|]+/)
+      .map((skill) => skill.trim())
+      .filter(Boolean);
+
+    if (normalized.length > 1) {
+      return normalized.slice(0, 8);
+    }
+
+    const value = normalized[0];
+
+    if (!value) {
+      return [];
+    }
+
+    if (value.length > 80) {
+      return [value.slice(0, 80).trim() + "..."];
+    }
+
+    return [value];
+  };
+  const getDescription = (description) => {
+    if (!description) {
+      return "No detailed description has been provided for this position.";
+    }
+
+    return description.trim();
+  };
 
   if (loading) {
     return (
       <section className="available-jobs">
         <div className="jobs-heading">
           <div>
+            <span className="jobs-label">
+              OPPORTUNITIES
+            </span>
+
             <h2>Available Jobs</h2>
-            <p>Find opportunities that match your skills and experience</p>
+
+            <p>
+              Explore roles that match your skills
+              and career goals.
+            </p>
           </div>
         </div>
 
-        <div className="loading-container">
-          <div className="loading-spinner"></div>
-          <p>Loading available jobs...</p>
+        <div className="jobs-loading-grid">
+          <div className="job-skeleton"></div>
+          <div className="job-skeleton"></div>
+          <div className="job-skeleton"></div>
         </div>
       </section>
     );
@@ -76,7 +135,7 @@ function AvailableJobs({ onSelectJob }) {
 
       <div className="jobs-heading">
 
-        <div>
+        <div className="jobs-heading-content">
           <span className="jobs-label">
             OPPORTUNITIES
           </span>
@@ -84,218 +143,303 @@ function AvailableJobs({ onSelectJob }) {
           <h2>Available Jobs</h2>
 
           <p>
-            Find opportunities that match your skills and experience
+            Explore roles that match your skills
+            and career goals.
           </p>
         </div>
 
         <button
           type="button"
           className="refresh-button"
-          onClick={loadJobs}
-          disabled={loading}
+          onClick={() => loadJobs(true)}
+          disabled={refreshing}
         >
-          <span>↻</span>
-          Refresh
+          <span className="refresh-icon">
+            ↻
+          </span>
+
+          {refreshing
+            ? "Refreshing..."
+            : "Refresh"}
         </button>
 
       </div>
 
-      {message && (
-        <div className="jobs-message">
-          <span>!</span>
-          <p>{message}</p>
+      <div className="job-search-container">
+
+        <div className="job-search-box">
+
+          <span className="search-icon">
+            ⌕
+          </span>
+
+          <input
+            type="text"
+            value={search}
+            onChange={(event) =>
+              setSearch(event.target.value)
+            }
+            placeholder="Search by job title, skill or keyword..."
+            aria-label="Search jobs"
+          />
+
+          {search && (
+            <button
+              type="button"
+              className="clear-search-button"
+              onClick={() => setSearch("")}
+              aria-label="Clear search"
+            >
+              ×
+            </button>
+          )}
+
+        </div>
+
+      </div>
+
+      {error && (
+        <div className="jobs-message error">
+          {error}
         </div>
       )}
 
-      {!message && jobs.length > 0 && (
-        <div className="job-search-container">
+      <div className="search-results-info">
+        <span>
+          {filteredJobs.length}{" "}
+          {filteredJobs.length === 1
+            ? "position"
+            : "positions"}
+        </span>
 
-          <div className="job-search-box">
+        {search && (
+          <span className="search-active">
+            Results for "{search}"
+          </span>
+        )}
+      </div>
 
-            <span className="search-icon">
-              ⌕
-            </span>
+      {filteredJobs.length === 0 ? (
 
-            <input
-              type="text"
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              placeholder="Search jobs by title, skills or description..."
-            />
-
-            {search && (
-              <button
-                type="button"
-                className="clear-search-button"
-                onClick={() => setSearch("")}
-              >
-                ×
-              </button>
-            )}
-
-          </div>
-
-          <div className="search-results-info">
-            <span>
-              {filteredJobs.length}{" "}
-              {filteredJobs.length === 1 ? "job" : "jobs"} found
-            </span>
-
-            {search && (
-              <span>
-                Searching for "<strong>{search}</strong>"
-              </span>
-            )}
-          </div>
-
-        </div>
-      )}
-
-      {!message && jobs.length === 0 ? (
         <div className="empty-jobs">
 
           <div className="empty-icon">
-            💼
+            {search ? "⌕" : "💼"}
           </div>
 
-          <h3>No jobs available</h3>
+          <h3>
+            {search
+              ? "No matching jobs"
+              : "No jobs available"}
+          </h3>
 
           <p>
-            There are currently no open positions.
-            Please check again later.
+            {search
+              ? "Try a different job title, skill or keyword."
+              : "There are currently no open positions."}
           </p>
 
-          <button
-            type="button"
-            onClick={loadJobs}
-          >
-            Check Again
-          </button>
+          {search && (
+            <button
+              type="button"
+              className="empty-clear-button"
+              onClick={() => setSearch("")}
+            >
+              Clear Search
+            </button>
+          )}
 
         </div>
-      ) : !message && filteredJobs.length === 0 ? (
-        <div className="empty-jobs">
 
-          <div className="empty-icon">
-            🔍
-          </div>
-
-          <h3>No matching jobs</h3>
-
-          <p>
-            Try searching with a different job title,
-            skill, or keyword.
-          </p>
-
-          <button
-            type="button"
-            onClick={() => setSearch("")}
-          >
-            Clear Search
-          </button>
-
-        </div>
       ) : (
+
         <div className="jobs-grid">
 
-          {filteredJobs.map((job) => (
+          {filteredJobs.map((job) => {
 
-            <article
-              className="job-card"
-              key={job.id}
-            >
+            const skills = getSkills(
+              job.requiredSkills
+            );
 
-              <div className="job-card-header">
+            const visibleSkills =
+              skills.slice(0, 4);
 
-                <div className="company-icon">
-                  💼
-                </div>
+            const remainingSkills =
+              Math.max(
+                skills.length - visibleSkills.length,
+                0
+              );
 
-                <div className="job-title">
+            return (
+              <article
+                className="job-card"
+                key={job.id}
+                onClick={() => onSelectJob(job)}
+              >
 
-                  <h3>{job.title}</h3>
+                <div className="job-card-top">
 
-                  <span className="job-status">
-                    Open
-                  </span>
-
-                </div>
-
-              </div>
-
-              <p className="job-description">
-                {job.description}
-              </p>
-
-              <div className="job-details">
-
-                <div className="job-detail">
-
-                  <span className="detail-icon">
-                    🛠
-                  </span>
-
-                  <div>
-                    <span className="detail-label">
-                      Required Skills
-                    </span>
-
-                    <span className="detail-value">
-                      {job.requiredSkills || "Not specified"}
-                    </span>
-                  </div>
-
-                </div>
-
-                <div className="job-detail">
-
-                  <span className="detail-icon">
+                  <div className="company-icon">
                     💼
-                  </span>
+                  </div>
 
-                  <div>
-                    <span className="detail-label">
-                      Experience
+                  <div className="job-status-row">
+
+                    <span className="job-status-dot"></span>
+
+                    <span className="job-status">
+                      OPEN
                     </span>
 
-                    <span className="detail-value">
-                      {job.minimumExperience} years
-                    </span>
                   </div>
 
                 </div>
 
-              </div>
+                <div className="job-card-title-area">
 
-              {job.alreadyApplied ? (
+                  <h3>
+                    {job.title}
+                  </h3>
 
-                <button
-                  type="button"
-                  className="apply-button already-applied-button"
-                  disabled
-                >
-                  Already Applied
-                  <span>✓</span>
-                </button>
+                </div>
 
-              ) : (
+                <div className="job-description-wrap">
 
-                <button
-                  type="button"
-                  className="apply-button"
-                  onClick={() => onSelectJob(job)}
-                >
-                  Apply Now
-                  <span>→</span>
-                </button>
+                  <p className="job-description">
+                    {getDescription(
+                      job.description
+                    )}
+                  </p>
 
-              )}
+                </div>
 
-            </article>
+                <div className="job-card-meta">
 
-          ))}
+                  <div className="job-meta-item">
+
+                    <span className="meta-icon">
+                      ◷
+                    </span>
+
+                    <div>
+                      <span className="meta-label">
+                        EXPERIENCE
+                      </span>
+
+                      <strong>
+                        {job.minimumExperience || 0}{" "}
+                        {job.minimumExperience === 1
+                          ? "Year"
+                          : "Years"}
+                      </strong>
+                    </div>
+
+                  </div>
+
+                  <div className="job-meta-item">
+
+                    <span className="meta-icon">
+                      ✓
+                    </span>
+
+                    <div>
+                      <span className="meta-label">
+                        STATUS
+                      </span>
+
+                      <strong
+                        className={
+                          job.alreadyApplied
+                            ? "status-applied"
+                            : "status-open"
+                        }
+                      >
+                        {job.alreadyApplied
+                          ? "Applied"
+                          : "Not Applied"}
+                      </strong>
+                    </div>
+
+                  </div>
+
+                </div>
+
+                <div className="job-skills-section">
+
+                  <span className="skills-label">
+                    REQUIRED SKILLS
+                  </span>
+
+                  {visibleSkills.length > 0 ? (
+
+                    <div className="skills-list">
+
+                      {visibleSkills.map(
+                        (skill, index) => (
+                          <span
+                            className="skill-chip"
+                            key={`${skill}-${index}`}
+                          >
+                            {skill}
+                          </span>
+                        )
+                      )}
+
+                      {remainingSkills > 0 && (
+                        <span className="skill-chip skill-more">
+                          +{remainingSkills}
+                        </span>
+                      )}
+
+                    </div>
+
+                  ) : (
+
+                    <span className="skills-not-specified">
+                      Skills not specified
+                    </span>
+
+                  )}
+
+                </div>
+
+                <div className="job-card-footer">
+
+                  <button
+                    type="button"
+                    className={
+                      job.alreadyApplied
+                        ? "apply-button already-applied-button"
+                        : "apply-button"
+                    }
+                    onClick={(event) => {
+                      event.stopPropagation();
+                      onSelectJob(job);
+                    }}
+                  >
+
+                    {job.alreadyApplied ? (
+                      <>
+                        <span>✓</span>
+                        Application Submitted
+                      </>
+                    ) : (
+                      <>
+                        <span>View & Apply</span>
+                        <strong>→</strong>
+                      </>
+                    )}
+
+                  </button>
+
+                </div>
+
+              </article>
+            );
+          })}
 
         </div>
+
       )}
 
     </section>
