@@ -240,8 +240,8 @@ function CandidateDashboard({ onLogout, theme, toggleTheme }) {
             className="logout-button"
             onClick={onLogout}
           >
-            <span>↪</span>
-            Logout
+            <span aria-hidden="true">↪</span>
+            <span className="logout-text">Logout</span>
           </button>
 
         </div>

@@ -93,25 +93,11 @@ function App() {
 
   if (role === "RECRUITER") {
     return (
-      <>
-        <button
-          type="button"
-          className="theme-toggle"
-          onClick={toggleTheme}
-          aria-label="Toggle theme"
-          title={
-            theme === "dark"
-              ? "Switch to light mode"
-              : "Switch to dark mode"
-          }
-        >
-          {theme === "dark" ? "☀" : "☾"}
-        </button>
-
-        <RecruiterDashboard
-          onLogout={handleLogout}
-        />
-      </>
+      <RecruiterDashboard
+        onLogout={handleLogout}
+        theme={theme}
+        toggleTheme={toggleTheme}
+      />
     );
   }
 
@@ -119,6 +105,8 @@ function App() {
     return (
       <CandidateDashboard
         onLogout={handleLogout}
+        theme={theme}
+        toggleTheme={toggleTheme}
       />
     );
   }

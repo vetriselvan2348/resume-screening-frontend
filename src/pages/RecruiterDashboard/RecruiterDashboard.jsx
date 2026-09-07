@@ -4,7 +4,7 @@ import JobForm from "../../components/JobForm";
 import JobList from "../../components/JobList/JobList";
 import "./RecruiterDashboard.css";
 
-function RecruiterDashboard({ onLogout }) {
+function RecruiterDashboard({ onLogout, theme, toggleTheme }) {
   const [jobs, setJobs] = useState([]);
   const [applicantCounts, setApplicantCounts] = useState({});
   const [topMatchCounts, setTopMatchCounts] = useState({});
@@ -317,6 +317,20 @@ function RecruiterDashboard({ onLogout }) {
             <span className="profile-arrow">
               {showProfile ? "▲" : "▼"}
             </span>
+          </button>
+
+          <button
+            type="button"
+            className="theme-toggle recruiter-theme-toggle"
+            onClick={toggleTheme}
+            aria-label="Toggle theme"
+            title={
+              theme === "dark"
+                ? "Switch to light mode"
+                : "Switch to dark mode"
+            }
+          >
+            {theme === "dark" ? "☀" : "☾"}
           </button>
 
           <button

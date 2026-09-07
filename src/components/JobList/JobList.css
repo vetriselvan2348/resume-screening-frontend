@@ -2378,3 +2378,717 @@ html[data-theme="dark"] .analysis-modal-actions button {
   box-shadow: none;
 }
 
+
+
+@media (max-width: 750px) {
+  .applicant-card {
+    grid-template-columns: 30px 40px minmax(0, 1fr) !important;
+    gap: 10px;
+    padding: 12px;
+  }
+
+  .applicant-score {
+    grid-column: 3 !important;
+    width: 100%;
+    min-width: 0;
+    align-items: stretch;
+  }
+
+  .applicant-score .analysis-button,
+  .applicant-score .screen-button {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+    height: 38px;
+    padding: 0 12px;
+    box-sizing: border-box;
+  }
+
+  .applicant-info {
+    min-width: 0;
+    overflow: hidden;
+  }
+
+  .applicant-info h4,
+  .applicant-info p,
+  .applicant-file {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 480px) {
+  .applicant-card {
+    grid-template-columns: 28px 40px minmax(0, 1fr) !important;
+    gap: 9px;
+    padding: 12px;
+  }
+
+  .applicant-score {
+    grid-column: 1 / -1 !important;
+    width: 100%;
+  }
+
+  .applicant-score .analysis-button,
+  .applicant-score .screen-button {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+.other-jobs-section {
+  margin-top: 22px;
+}
+
+.vemora-jobs-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 24px;
+  padding: 18px 20px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, #111827, #312e81);
+  color: #ffffff;
+}
+
+.vemora-brand-mark {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  border-radius: 11px;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  font-size: 21px;
+  font-weight: 900;
+}
+
+.vemora-brand-name {
+  display: block;
+  font-size: 15px;
+  font-weight: 850;
+  letter-spacing: 1.2px;
+}
+
+.vemora-jobs-brand p {
+  margin: 3px 0 0;
+  color: #c7d2fe;
+  font-size: 11px;
+}
+
+.other-jobs-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 18px;
+}
+
+.other-jobs-header h2 {
+  margin: 4px 0 5px;
+}
+
+.other-jobs-count {
+  flex: 0 0 auto;
+  padding: 8px 13px;
+  border: 1px solid #c7d2fe;
+  border-radius: 20px;
+  background: #eef2ff;
+  color: #4338ca;
+  font-size: 11px;
+  font-weight: 800;
+}
+
+.other-jobs-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.other-recruiter-job-card {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  gap: 20px;
+  min-width: 0;
+  padding: 18px;
+  border: 1px solid #e5e7eb;
+  border-radius: 13px;
+  background: #ffffff;
+  box-sizing: border-box;
+}
+
+.other-job-main {
+  display: flex;
+  gap: 13px;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.other-job-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  border-radius: 10px;
+  background: #eef2ff;
+  font-size: 19px;
+}
+
+.other-job-content {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.other-job-content h3 {
+  margin: 4px 0 7px;
+  color: #1f2937;
+  font-size: 16px;
+}
+
+.other-job-description {
+  margin: 0 0 12px;
+  color: #6b7280;
+  font-size: 12px;
+  line-height: 1.55;
+  overflow-wrap: anywhere;
+}
+
+.other-job-information {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.other-job-information span,
+.other-job-recruiter span {
+  display: block;
+  margin-bottom: 3px;
+  color: #9ca3af;
+  font-size: 9px;
+  font-weight: 800;
+  letter-spacing: .6px;
+}
+
+.other-job-information p {
+  margin: 0;
+  color: #4b5563;
+  font-size: 11px;
+}
+
+.other-job-recruiter {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin-top: 15px;
+  padding-top: 13px;
+  border-top: 1px solid #eef0f3;
+}
+
+.other-recruiter-avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  flex: 0 0 34px;
+  border-radius: 50%;
+  background: #e0e7ff;
+  color: #4338ca;
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.other-job-recruiter strong {
+  display: block;
+  color: #374151;
+  font-size: 11px;
+}
+
+.other-job-recruiter p {
+  margin: 2px 0 0;
+  color: #6b7280;
+  font-size: 10px;
+  overflow-wrap: anywhere;
+}
+
+.restricted-job-access {
+  display: flex;
+  flex: 0 0 235px;
+  width: 235px;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 5px;
+  padding: 16px;
+  border: 1px solid #fde68a;
+  border-radius: 11px;
+  background: #fffbeb;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.restricted-job-icon {
+  font-size: 21px;
+}
+
+.restricted-job-access strong {
+  color: #92400e;
+  font-size: 11px;
+}
+
+.restricted-job-access span {
+  color: #a16207;
+  font-size: 9px;
+  line-height: 1.4;
+}
+
+html[data-theme="dark"] .vemora-jobs-brand {
+  background: linear-gradient(135deg, #111827, #1e1b4b);
+}
+
+html[data-theme="dark"] .other-recruiter-job-card {
+  background: var(--surface-2);
+  border-color: var(--border);
+}
+
+html[data-theme="dark"] .other-job-content h3,
+html[data-theme="dark"] .other-job-recruiter strong {
+  color: var(--text);
+}
+
+html[data-theme="dark"] .other-job-description,
+html[data-theme="dark"] .other-job-information p,
+html[data-theme="dark"] .other-job-recruiter p {
+  color: var(--text-secondary);
+}
+
+html[data-theme="dark"] .other-job-recruiter {
+  border-color: var(--border);
+}
+
+html[data-theme="dark"] .other-jobs-count {
+  background: #211d45;
+  border-color: #4f46e5;
+  color: #a5b4fc;
+}
+
+html[data-theme="dark"] .restricted-job-access {
+  background: #2a2110;
+  border-color: #6b4d12;
+}
+
+html[data-theme="dark"] .restricted-job-access strong {
+  color: #fbbf24;
+}
+
+html[data-theme="dark"] .restricted-job-access span {
+  color: #facc15;
+}
+
+@media (max-width: 850px) {
+  .other-recruiter-job-card {
+    flex-direction: column;
+  }
+
+  .restricted-job-access {
+    width: 100%;
+    flex: 0 0 auto;
+    min-height: 80px;
+  }
+}
+
+@media (max-width: 600px) {
+  .vemora-jobs-brand {
+    padding: 15px;
+    margin-bottom: 18px;
+  }
+
+  .other-jobs-header {
+    align-items: flex-start;
+  }
+
+  .other-jobs-count {
+    padding: 7px 10px;
+  }
+
+  .other-recruiter-job-card {
+    padding: 14px;
+  }
+
+  .other-job-main {
+    gap: 10px;
+  }
+
+  .other-job-icon {
+    width: 38px;
+    height: 38px;
+    flex-basis: 38px;
+  }
+
+  .other-job-information {
+    gap: 12px;
+  }
+}
+
+@media (max-width: 420px) {
+  .other-jobs-header {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .other-jobs-count {
+    align-self: flex-start;
+  }
+
+  .vemora-brand-mark {
+    width: 38px;
+    height: 38px;
+    flex-basis: 38px;
+  }
+
+  .vemora-brand-name {
+    font-size: 13px;
+  }
+
+  .restricted-job-access {
+    padding: 13px;
+  }
+}
+
+.job-list-section {
+  margin-bottom: 18px !important;
+}
+
+.job-list-section .section-header {
+  margin-bottom: 14px !important;
+}
+
+.job-list-section .section-header h2 {
+  font-size: 20px !important;
+  margin: 3px 0 4px !important;
+}
+
+.job-list-subtitle {
+  font-size: 11px !important;
+}
+
+.job-search-wrapper {
+  margin-bottom: 14px !important;
+}
+
+.jobs-list {
+  gap: 10px !important;
+}
+
+.recruiter-job-card {
+  padding: 14px 16px !important;
+  border-radius: 10px !important;
+}
+
+.recruiter-job-header {
+  margin-bottom: 8px !important;
+}
+
+.recruiter-job-icon {
+  width: 36px !important;
+  height: 36px !important;
+  font-size: 16px !important;
+}
+
+.recruiter-job-meta {
+  font-size: 8px !important;
+}
+
+.recruiter-job-identity h3 {
+  font-size: 15px !important;
+  margin: 3px 0 0 !important;
+}
+
+.applicant-count-badge {
+  padding: 5px 9px !important;
+  border-radius: 7px !important;
+}
+
+.applicant-count-badge strong {
+  font-size: 15px !important;
+}
+
+.applicant-count-badge span {
+  font-size: 8px !important;
+}
+
+.recruiter-job-description {
+  margin: 0 0 10px !important;
+  font-size: 11px !important;
+  line-height: 1.45 !important;
+}
+
+.recruiter-job-information {
+  gap: 10px !important;
+  margin-bottom: 10px !important;
+}
+
+.job-information-item {
+  padding: 7px 10px !important;
+  border-radius: 7px !important;
+}
+
+.job-information-label {
+  font-size: 7px !important;
+}
+
+.job-information-item p {
+  margin-top: 2px !important;
+  font-size: 10px !important;
+}
+
+.recruiter-job-footer {
+  padding-top: 9px !important;
+}
+
+.recruiter-job-footer > span {
+  font-size: 9px !important;
+}
+
+.job-card-actions {
+  gap: 6px !important;
+}
+
+.job-card-actions button {
+  height: 32px !important;
+  font-size: 10px !important;
+}
+
+.delete-job-button {
+  padding: 0 10px !important;
+}
+
+.view-applicants-button {
+  max-width: none !important;
+  padding: 0 11px !important;
+}
+
+.other-jobs-section {
+  margin-top: 16px !important;
+}
+
+.vemora-jobs-brand {
+  margin-bottom: 16px !important;
+  padding: 12px 15px !important;
+  border-radius: 11px !important;
+}
+
+.vemora-brand-mark {
+  width: 34px !important;
+  height: 34px !important;
+  flex-basis: 34px !important;
+  border-radius: 9px !important;
+  font-size: 17px !important;
+}
+
+.vemora-brand-name {
+  font-size: 12px !important;
+  letter-spacing: 1px !important;
+}
+
+.vemora-jobs-brand p {
+  font-size: 9px !important;
+}
+
+.other-jobs-header {
+  margin-bottom: 12px !important;
+}
+
+.other-jobs-header h2 {
+  font-size: 18px !important;
+  margin: 3px 0 3px !important;
+}
+
+.other-jobs-count {
+  padding: 6px 10px !important;
+  font-size: 9px !important;
+}
+
+.other-jobs-list {
+  gap: 9px !important;
+}
+
+.other-recruiter-job-card {
+  gap: 14px !important;
+  padding: 13px !important;
+  border-radius: 10px !important;
+}
+
+.other-job-main {
+  gap: 10px !important;
+}
+
+.other-job-icon {
+  width: 35px !important;
+  height: 35px !important;
+  flex-basis: 35px !important;
+  border-radius: 8px !important;
+  font-size: 15px !important;
+}
+
+.other-job-content h3 {
+  font-size: 14px !important;
+  margin: 3px 0 5px !important;
+}
+
+.other-job-description {
+  margin-bottom: 9px !important;
+  font-size: 10px !important;
+  line-height: 1.45 !important;
+}
+
+.other-job-information {
+  gap: 9px !important;
+}
+
+.other-job-information span,
+.other-job-recruiter span {
+  margin-bottom: 2px !important;
+  font-size: 7px !important;
+}
+
+.other-job-information p {
+  font-size: 9px !important;
+}
+
+.other-job-recruiter {
+  gap: 7px !important;
+  margin-top: 10px !important;
+  padding-top: 9px !important;
+}
+
+.other-recruiter-avatar {
+  width: 28px !important;
+  height: 28px !important;
+  flex-basis: 28px !important;
+  font-size: 10px !important;
+}
+
+.other-job-recruiter strong {
+  font-size: 9px !important;
+}
+
+.other-job-recruiter p {
+  font-size: 8px !important;
+}
+
+.restricted-job-access {
+  flex-basis: 185px !important;
+  width: 185px !important;
+  padding: 10px !important;
+  border-radius: 8px !important;
+  gap: 3px !important;
+}
+
+.restricted-job-icon {
+  font-size: 16px !important;
+}
+
+.restricted-job-access strong {
+  font-size: 9px !important;
+}
+
+.restricted-job-access span {
+  font-size: 8px !important;
+}
+
+@media (max-width: 850px) {
+  .recruiter-job-card {
+    padding: 13px !important;
+  }
+
+  .other-recruiter-job-card {
+    gap: 10px !important;
+  }
+
+  .restricted-job-access {
+    min-height: 65px !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .recruiter-job-card {
+    padding: 12px !important;
+  }
+
+  .recruiter-job-header {
+    gap: 8px !important;
+  }
+
+  .recruiter-job-description {
+    font-size: 10px !important;
+  }
+
+  .recruiter-job-footer {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 8px !important;
+  }
+
+  .job-card-actions {
+    width: 100% !important;
+  }
+
+  .job-card-actions button {
+    flex: 1 !important;
+  }
+
+  .other-recruiter-job-card {
+    padding: 11px !important;
+  }
+
+  .other-job-information {
+    flex-direction: row !important;
+  }
+
+  .restricted-job-access {
+    width: 100% !important;
+    flex-basis: auto !important;
+  }
+}
+
+@media (max-width: 420px) {
+  .recruiter-job-card {
+    padding: 10px !important;
+  }
+
+  .recruiter-job-identity h3 {
+    font-size: 13px !important;
+  }
+
+  .applicant-count-badge {
+    padding: 4px 7px !important;
+  }
+
+  .applicant-count-badge strong {
+    font-size: 13px !important;
+  }
+
+  .recruiter-job-information {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+  }
+
+  .job-information-item {
+    padding: 6px 8px !important;
+  }
+
+  .vemora-jobs-brand {
+    padding: 10px 12px !important;
+  }
+
+  .other-jobs-header h2 {
+    font-size: 16px !important;
+  }
+}

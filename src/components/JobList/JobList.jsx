@@ -107,33 +107,29 @@ function JobList({
 
   };
 
-  const filteredJobs = jobs.filter((job) => {
-
-  const searchText = [
-
-    job.title,
-
-    job.description,
-
-    job.requiredSkills,
-
-    job.minimumExperience
-
-  ]
-
-    .filter(Boolean)
-
-    .join(" ")
-
-    .toLowerCase();
-
-  return searchText.includes(
-
-    jobSearchTerm.trim().toLowerCase()
-
+  const myJobs = jobs.filter(
+    (job) => job.ownedByCurrentRecruiter === true
   );
 
-});
+  const otherJobs = jobs.filter(
+    (job) => job.ownedByCurrentRecruiter !== true
+  );
+
+  const filteredMyJobs = myJobs.filter((job) => {
+    const searchText = [
+      job.title,
+      job.description,
+      job.requiredSkills,
+      job.minimumExperience
+    ]
+      .filter(Boolean)
+      .join(" ")
+      .toLowerCase();
+
+    return searchText.includes(
+      jobSearchTerm.trim().toLowerCase()
+    );
+  });
 
   const deleteJob = async (job) => {
 
@@ -666,7 +662,7 @@ function JobList({
 
           <div className="jobs-list">
 
-            {filteredJobs.length === 0 ? (
+            {filteredMyJobs.length === 0 ? (
 
               <div className="job-list-empty">
 
@@ -700,7 +696,7 @@ function JobList({
 
             ) : (
 
-            filteredJobs.map((job) => {
+            filteredMyJobs.map((job) => {
 
               const count = applicantCounts[job.id] || 0;
 
@@ -865,6 +861,102 @@ function JobList({
         )}
 
       </section>
+
+      {otherJobs.length > 0 && (
+        <section className="dashboard-card other-jobs-section">
+          <div className="vemora-jobs-brand">
+            <div className="vemora-brand-mark">V</div>
+            <div>
+              <span className="vemora-brand-name">VEMORA HR</span>
+              <p>Smart hiring. Better teams.</p>
+            </div>
+          </div>
+
+          <div className="other-jobs-header">
+            <div>
+              <span className="job-list-label">NETWORK</span>
+              <h2>Other Recruiter Jobs</h2>
+              <p className="job-list-subtitle">
+                Explore positions posted by other Vemora HR recruiters
+              </p>
+            </div>
+
+            <div className="other-jobs-count">
+              {otherJobs.length} {otherJobs.length === 1 ? "Job" : "Jobs"}
+            </div>
+          </div>
+
+          <div className="other-jobs-list">
+            {otherJobs.map((job) => (
+              <article
+                className="other-recruiter-job-card"
+                key={job.id}
+              >
+                <div className="other-job-main">
+                  <div className="other-job-icon">💼</div>
+
+                  <div className="other-job-content">
+                    <div className="recruiter-job-meta">
+                      <span className="job-open-dot"></span>
+                      <span>OPEN</span>
+                    </div>
+
+                    <h3>{job.title}</h3>
+
+                    <p className="other-job-description">
+                      {job.description}
+                    </p>
+
+                    <div className="other-job-information">
+                      <div>
+                        <span>REQUIRED SKILLS</span>
+                        <p>
+                          {job.requiredSkills || "Not specified"}
+                        </p>
+                      </div>
+
+                      <div>
+                        <span>EXPERIENCE</span>
+                        <p>
+                          {job.minimumExperience} years
+                        </p>
+                      </div>
+                    </div>
+
+                    <div className="other-job-recruiter">
+                      <div className="other-recruiter-avatar">
+                        {(job.recruiterName || "R")
+                          .charAt(0)
+                          .toUpperCase()}
+                      </div>
+
+                      <div>
+                        <span>POSTED BY</span>
+                        <strong>
+                          {job.recruiterName || "Recruiter"}
+                        </strong>
+                        <p>
+                          {job.recruiterEmail || "Email unavailable"}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="restricted-job-access">
+                  <div className="restricted-job-icon">🔒</div>
+                  <strong>
+                    You are not allowed to access this job
+                  </strong>
+                  <span>
+                    This position belongs to another recruiter account.
+                  </span>
+                </div>
+              </article>
+            ))}
+          </div>
+        </section>
+      )}
 
       {selectedJob && (
 

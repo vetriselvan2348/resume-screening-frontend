@@ -583,3 +583,124 @@
     gap: 5px;
   }
 }
+html[data-theme="dark"] .available-jobs .jobs-heading h2 {
+  color: #f8fafc;
+}
+
+html[data-theme="dark"] .available-jobs .jobs-heading p {
+  color: #94a3b8;
+}
+
+html[data-theme="dark"] .available-jobs .jobs-label {
+  color: #60a5fa;
+}
+
+html[data-theme="dark"] .available-jobs .refresh-button {
+  background: #1f2937;
+  border-color: #374151;
+  color: #60a5fa;
+}
+
+html[data-theme="dark"] .available-jobs .refresh-button:hover:not(:disabled) {
+  background: #273449;
+  border-color: #475569;
+}
+
+html[data-theme="dark"] .available-jobs .job-search-box input {
+  background: #1f2937;
+  border-color: #374151;
+  color: #f8fafc;
+}
+
+html[data-theme="dark"] .available-jobs .job-search-box input::placeholder {
+  color: #64748b;
+}
+
+html[data-theme="dark"] .available-jobs .search-icon {
+  color: #94a3b8;
+}
+
+html[data-theme="dark"] .available-jobs .clear-search-button {
+  background: #374151;
+  color: #cbd5e1;
+}
+
+html[data-theme="dark"] .available-jobs .clear-search-button:hover {
+  background: #475569;
+  color: #f8fafc;
+}
+
+html[data-theme="dark"] .available-jobs .search-results-info {
+  color: #64748b;
+}
+
+html[data-theme="dark"] .available-jobs .search-results-info strong {
+  color: #cbd5e1;
+}
+
+html[data-theme="dark"] .available-jobs .job-card {
+  background: #1f2937;
+  border-color: #374151;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+html[data-theme="dark"] .available-jobs .job-card:hover {
+  border-color: #475569;
+}
+
+html[data-theme="dark"] .available-jobs .job-title h3 {
+  color: #f8fafc;
+}
+
+html[data-theme="dark"] .available-jobs .job-description {
+  color: #94a3b8;
+}
+
+html[data-theme="dark"] .available-jobs .job-details {
+  background: #172033;
+  border-color: #273449;
+}
+
+html[data-theme="dark"] .available-jobs .detail-icon {
+  background: #1f2937;
+  border-color: #374151;
+}
+
+html[data-theme="dark"] .available-jobs .detail-label {
+  color: #64748b;
+}
+
+html[data-theme="dark"] .available-jobs .detail-value {
+  color: #cbd5e1;
+}
+
+html[data-theme="dark"] .available-jobs .already-applied-button {
+  background: #143326 !important;
+  border-color: #22543d !important;
+  color: #6ee7b7 !important;
+}
+
+html[data-theme="dark"] .available-jobs .empty-jobs,
+html[data-theme="dark"] .available-jobs .loading-container {
+  background: #1f2937;
+  border-color: #374151;
+}
+
+html[data-theme="dark"] .available-jobs .empty-jobs h3 {
+  color: #f8fafc;
+}
+
+html[data-theme="dark"] .available-jobs .empty-jobs p {
+  color: #94a3b8;
+}
+
+html[data-theme="dark"] .available-jobs .empty-jobs button {
+  background: #1f2937;
+  border-color: #475569;
+  color: #60a5fa;
+}
+
+html[data-theme="dark"] .available-jobs .loading-container p {
+  color: #94a3b8;
+}
+

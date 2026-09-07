@@ -1090,3 +1090,23 @@ html[data-theme="dark"] .profile-form-success {
   color: var(--success-text);
 }
 
+
+.recruiter-header-actions .recruiter-theme-toggle {
+  position: static !important;
+  width: 38px !important;
+  height: 38px !important;
+  min-width: 38px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px !important;
+  cursor: pointer;
+}
+
+html[data-theme="dark"] .recruiter-header-actions .recruiter-theme-toggle {
+  background: var(--surface-2) !important;
+  color: var(--text-secondary) !important;
+  border-color: var(--border) !important;
+}
